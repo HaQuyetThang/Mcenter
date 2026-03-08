@@ -1,0 +1,6 @@
+@MCenter.API_HostAddress = http://localhost:5148
+
+GET {{MCenter.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

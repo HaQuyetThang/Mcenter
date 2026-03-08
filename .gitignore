@@ -1,0 +1,51 @@
+# .NET Build outputs
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.userprefs
+
+# Publish output
+publish/
+out/
+
+# Secrets & config overrides
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+*.local
+
+# Environment files (chứa secrets)
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+logs/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Rider / JetBrains
+.idea/
+
+# VS Code
+.vscode/
+
+# EF Core migrations snapshots (giữ lại migrations)
+# Nếu muốn bỏ qua: *.Designer.cs
+
+# NuGet packages
+*.nupkg
+packages/

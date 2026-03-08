@@ -1,0 +1,64 @@
+erDiagram
+    Server {
+        int Id PK
+        string Name
+        string IpAddress
+        string Status "Online/Offline/Busy"
+        datetime LastHeartbeat
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+
+    Workflow {
+        int Id PK
+        string Name
+        string PackagePath "Đường dẫn file .nupkg hoặc project"
+        string Version
+        bool IsActive
+        datetime CreatedAt
+        datetime UpdatedAt
+    }
+
+    Schedule {
+        int Id PK
+        int WorkflowId FK
+        string CronExpression "Cron expression cho lịch chạy"
+        string Name
+        bool IsActive
+        datetime NextRunTime
+        datetime CreatedAt
+    }
+
+    ScheduleServer {
+        int Id PK
+        int ScheduleId FK
+        int ServerId FK
+    }
+
+    Execution {
+        int Id PK
+        int ScheduleId FK
+        int ServerId FK
+        int WorkflowId FK
+        string Status "Queued/Running/Success/Failed"
+        datetime StartTime
+        datetime EndTime
+        string LogOutput
+        string TriggeredBy "Schedule/Manual"
+        datetime CreatedAt
+    }
+
+    User {
+        int Id PK
+        string Username
+        string Email
+        string PasswordHash
+        datetime CreatedAt
+    }
+
+    Workflow ||--o{ Schedule : "has many"
+    Schedule ||--o{ ScheduleServer : "assigned to"
+    Server ||--o{ ScheduleServer : "runs on"
+    Schedule ||--o{ Execution : "triggers"
+    Server ||--o{ Execution : "executes on"
+    Workflow ||--o{ Execution : "instance of"
